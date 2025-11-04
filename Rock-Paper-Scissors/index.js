@@ -4,21 +4,25 @@ const options = [
   { short: "s", long: "scissors", beats: "paper" },
 ];
 
-function wrong_input() {
-  console.error("wrong input");
+function exit_with_hint() {
+  const possible_input = options.reduce(
+    (acc, opt) => (acc = acc + opt.long + " or " + opt.short + "\n"),
+    ""
+  );
+  console.error(`Please enter: \n${possible_input}`);
   process.exit(2);
 }
 
 function parse_input_opt() {
   if (process.argv.length < 3) {
-    wrong_input();
+    exit_with_hint();
   }
   const input = String(process.argv[2]).toLowerCase();
   const input_opt = options.find(
     (opt) => opt.short === input || opt.long === input
   );
   if (input_opt === undefined) {
-    wrong_input();
+    exit_with_hint();
   }
   return input_opt;
 }
@@ -27,7 +31,6 @@ function generate_opt() {
   const numFloatSmaller100 = Math.random() * 100;
   const numSmallThanOrEqualTo100 = Math.round(numFloatSmaller100);
   const numBetween0And2 = numSmallThanOrEqualTo100 % 3;
-  console.log(numBetween0And2);
   return options[numBetween0And2];
 }
 
