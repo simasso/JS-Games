@@ -28,10 +28,8 @@ function parse_input_opt() {
 }
 
 function generate_opt() {
-  const numFloatSmaller100 = Math.random() * 100;
-  const numSmallThanOrEqualTo100 = Math.round(numFloatSmaller100);
-  const numBetween0And2 = numSmallThanOrEqualTo100 % 3;
-  return options[numBetween0And2];
+  const idx = Math.floor(Math.random() * 3);
+  return options[idx];
 }
 
 function toCapital(name) {
