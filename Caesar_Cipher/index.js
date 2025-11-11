@@ -1,13 +1,13 @@
+const alphabethLength = 26;
+
 function correctCharCode(charCode) {
   const codeA = "a".charCodeAt(0);
   const codeZ = "z".charCodeAt(0);
   if (charCode < codeA) {
-    const correctionOffset = codeA - charCode;
-    return codeZ - correctionOffset;
+    return charCode + alphabethLength;
   }
   if (charCode > codeZ) {
-    const correctionOffset = charCode - codeZ;
-    return codeA + correctionOffset;
+    return charCode - alphabethLength;
   }
   return charCode;
 }
@@ -18,7 +18,7 @@ if (process.argv.length < 4 || isNaN(process.argv[3])) {
 }
 
 const phrase = process.argv[2];
-const shift = Math.round(Number(process.argv[3])) % 26;
+const shift = Math.round(Number(process.argv[3])) % alphabethLength;
 let cipheredPhrase = "";
 
 for (let i = 0; i < phrase.length; i++) {
